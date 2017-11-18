@@ -25,7 +25,7 @@ func (t *Mysql) Close() {
 	t.link.Close()
 }
 
-func (t *Mysql) Query(sql string) (results [](map[string]string), count int) {
+func (t *Mysql) GetList(sql string) (results [](map[string]string), count int) {
 
 	rows, err := t.link.Query(sql)
 	if err == nil {
@@ -57,7 +57,7 @@ func (t *Mysql) Query(sql string) (results [](map[string]string), count int) {
 	return results, count
 }
 
-func (t *Mysql) One(sql string) (result map[string]string, has bool) {
+func (t *Mysql) GetOne(sql string) (result map[string]string, has bool) {
 
 	rows, err := t.link.Query(sql)
 	if err == nil {
