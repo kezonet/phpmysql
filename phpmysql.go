@@ -25,9 +25,9 @@ func (t *Mysql) Close() {
 	t.link.Close()
 }
 
-func (t *Mysql) GetList(sql string) (results [](map[string]string), count int) {
+func (t *Mysql) GetList(sql string, args ...interface{}) (results [](map[string]string), count int) {
 
-	rows, err := t.link.Query(sql)
+	rows, err := t.link.Query(sql, args...)
 	if err == nil {
 		cols, err := rows.Columns()
 
@@ -57,9 +57,9 @@ func (t *Mysql) GetList(sql string) (results [](map[string]string), count int) {
 	return results, count
 }
 
-func (t *Mysql) GetOne(sql string) (result map[string]string, has bool) {
+func (t *Mysql) GetOne(sql string, args ...interface{}) (result map[string]string, has bool) {
 
-	rows, err := t.link.Query(sql)
+	rows, err := t.link.Query(sql, args...)
 	if err == nil {
 		cols, err := rows.Columns()
 
@@ -86,4 +86,16 @@ func (t *Mysql) GetOne(sql string) (result map[string]string, has bool) {
 		_ = err
 	}
 	return result, has
+}
+
+func (t *Mysql) Update() {
+
+}
+
+func (t *Mysql) Insert() {
+
+}
+
+func (t *Mysql) Inserts() {
+
 }
