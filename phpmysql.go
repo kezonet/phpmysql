@@ -3,6 +3,7 @@ package phpmysql
 import (
 	"database/sql"
 	"fmt"
+	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -226,4 +227,13 @@ func (t *Mysql) Inserts(tablename string, insertsql []map[string]interface{}) in
 		return -3 //插入数据有误
 	}
 	return 1
+}
+
+func (t *Mysql) Join(arr []string) string {
+	r := "'"
+	if len(arr) > 0 {
+		r += strings.Join(arr, "','")
+	}
+	r += "'"
+	return r
 }
